@@ -32,12 +32,10 @@ export default function SimpleCard() {
       username === process.env.REACT_APP_USERNAME &&
       password === process.env.REACT_APP_PASSWORD
     ) {
-      console.log('Login successful');
       localStorage.setItem('accessToken', process.env.REACT_APP_TOKEN);
       // redirect to /
       navigate('/');
     } else {
-      console.log('Login failed');
       window.alert('Login failed');
     }
   };
