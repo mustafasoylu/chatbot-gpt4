@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Avatar, Flex, Text } from '@chakra-ui/react';
+import TimerSpinner from './TimerSpinner';
 
 const Messages = ({ messages }) => {
   const AlwaysScrollToBottom = () => {
@@ -49,6 +50,12 @@ const Messages = ({ messages }) => {
               >
                 <Text>{item.content}</Text>
               </Flex>
+            </Flex>
+          );
+        } else if (item.role === 'spinner') {
+          return (
+            <Flex key={index} w="100%">
+              <TimerSpinner />
             </Flex>
           );
         }

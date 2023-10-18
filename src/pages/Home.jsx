@@ -26,13 +26,30 @@ const Home = () => {
     }
 
     let tempMessages = [...messages, { role: 'user', content: inputMessage }];
+    tempMessages.push({ role: 'spinner' });
     setInputMessage('');
+    setMessages(tempMessages);
 
     try {
-      const response = await chat_reply(tempMessages);
-      const botReply = response.trim();
-      tempMessages.push({ role: 'assistant', content: botReply });
+      // send message to chatgpt but remove the spinner message
+      const response = await chat_reply([
+        ...messages,
+        { role: 'user', content: inputMessage },
+      ]);
+
+      // first remove the spinner message
+      tempMessages = tempMessages.filter((item) => item.role !== 'spinner');
       setMessages(tempMessages);
+
+      // then add the bot reply
+      const botReply = response.trim();
+      setMessages([
+        ...tempMessages,
+        {
+          role: 'assistant',
+          content: botReply,
+        },
+      ]);
     } catch (error) {
       // remove last message from messages
       console.error('Error fetching response:', error);
