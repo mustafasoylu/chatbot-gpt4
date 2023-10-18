@@ -34,7 +34,7 @@ const Home = () => {
       // send message to chatgpt but remove the spinner message
       const response = await chat_reply([
         ...messages,
-        { role: 'user', content: inputMessage },
+        { role: 'user', content: inputMessage.trim() },
       ]);
 
       // first remove the spinner message
@@ -57,8 +57,8 @@ const Home = () => {
   }
 
   return (
-    <Flex w="100%" h="100vh" justify="center" align="center">
-      <Flex w="40%" h="90%" flexDir="column">
+    <Flex w="90%" h="100vh" justify="center" align="center">
+      <Flex w={['90%', '80%', '70%', '60%']} h="90%" flexDir="column">
         <Header />
         <Divider orientation="horizontal" />
         <Messages messages={messages} />

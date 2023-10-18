@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Avatar, Flex, Text } from '@chakra-ui/react';
+import { Avatar, Flex } from '@chakra-ui/react';
 import TimerSpinner from './TimerSpinner';
+import CustomReactMarkdown from './CustomReactMarkdown';
 
 const Messages = ({ messages }) => {
   const AlwaysScrollToBottom = () => {
@@ -24,14 +25,14 @@ const Messages = ({ messages }) => {
             <Flex key={index} w="100%" justify="flex-end">
               <Flex
                 bg="black"
-                color="white"
+                color="black"
                 minW="100px"
                 maxW="350px"
                 my="1"
                 p="3"
                 rounded="xl"
               >
-                <Text>{item.content}</Text>
+                <CustomReactMarkdown content={item.content} />
               </Flex>
             </Flex>
           );
@@ -48,7 +49,7 @@ const Messages = ({ messages }) => {
                 p="3"
                 rounded="xl"
               >
-                <Text>{item.content}</Text>
+                <CustomReactMarkdown content={item.content} />
               </Flex>
             </Flex>
           );
