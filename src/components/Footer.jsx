@@ -13,7 +13,7 @@ const Footer = ({ inputMessage, setInputMessage, handleSendMessage }) => {
         }}
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
-            handleSendMessage();
+            if (inputMessage.trim().length > 0) handleSendMessage();
           }
         }}
         value={inputMessage}
