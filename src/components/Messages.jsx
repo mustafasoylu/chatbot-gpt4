@@ -59,6 +59,22 @@ const Messages = ({ messages }) => {
               <TimerSpinner />
             </Flex>
           );
+        } else if (item.role === 'error') {
+          return (
+            <Flex key={index} w="100%">
+              <Flex
+                bg="red.500"
+                color="black"
+                minW="100px"
+                maxW="350px"
+                my="1"
+                p="3"
+                rounded="xl"
+              >
+                <CustomReactMarkdown content={item.content} />
+              </Flex>
+            </Flex>
+          );
         }
       })}
       <AlwaysScrollToBottom />

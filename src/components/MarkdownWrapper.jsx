@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkLint from 'remark-lint';
+import remarkGemoji from 'remark-gemoji';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import rehypeRaw from 'rehype-raw';
@@ -13,7 +14,7 @@ function MarkdownWrapper({ content }) {
 
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm, remarkLint]}
+      remarkPlugins={[remarkGfm, remarkLint, remarkGemoji]}
       rehypePlugins={[rehypeRaw]}
       components={{
         code({ inline, className, children }) {

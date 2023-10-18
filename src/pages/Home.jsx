@@ -25,7 +25,10 @@ const Home = () => {
       return;
     }
 
-    let tempMessages = [...messages, { role: 'user', content: inputMessage }];
+    let tempMessages = [
+      ...messages,
+      { role: 'user', content: inputMessage.trim() },
+    ];
     tempMessages.push({ role: 'spinner' });
     setInputMessage('');
     setMessages(tempMessages);
@@ -38,8 +41,9 @@ const Home = () => {
       ]);
 
       // first remove the spinner message
-      tempMessages = tempMessages.filter((item) => item.role !== 'spinner');
-      setMessages(tempMessages);
+      tempMessages = tempMessages.filter(
+        (item) => item.role !== 'spinner' && item.role !== 'error'
+      );
 
       // then add the bot reply
       const botReply = response.trim();
@@ -51,8 +55,18 @@ const Home = () => {
         },
       ]);
     } catch (error) {
-      // remove last message from messages
-      console.error('Error fetching response:', error);
+      // first remove the spinner message
+      tempMessages = tempMessages.filter(
+        (item) => item.role !== 'spinner' && item.role !== 'error'
+      );
+      setMessages([
+        ...tempMessages,
+        {
+          role: 'error',
+          content: `:x: <span style="color:red">*Error* on fetching response:</span> ${error}`,
+        },
+      ]);
+      console.error('Error on fetching response:', error);
     }
   }
 
